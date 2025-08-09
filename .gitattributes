@@ -1,0 +1,16 @@
+# Improve GitHub language stats and ignore build output
+
+# Treat build artifacts as vendored so they don't skew language breakdown
+dist/** linguist-vendored
+
+# Generated CSS should not count as authored code
+src/output.css linguist-generated
+
+# Ensure Tailwind source CSS is recognized as CSS
+src/input.css linguist-language=CSS
+
+# Common minified files
+*.min.js linguist-minified
+*.min.css linguist-minified
+
+
