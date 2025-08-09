@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "پسورد ساز",
   "short_name": "پسوردساز",
@@ -11,3 +12,18 @@
 }
 
 
+=======
+{
+  "name": "پسورد ساز",
+  "short_name": "پسوردساز",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "dir": "rtl",
+  "lang": "fa",
+  "icons": []
+}
+
+
+>>>>>>> 90b0267bb542127759cf6f33cd61e8b7cf9e056f
