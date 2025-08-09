@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' ws: wss:;" />
+  <title>پسورد ساز</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/input.css" />
+</head>
+<body>
+  <!-- Loader -->
+  <div id="loader" class="loader">
+    <div class="spinner"></div>
+    <p>در حال بارگذاری...</p>
+  </div>
+
+  <!-- Background with Particles -->
+  <div class="background" id="background"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 10-8 0v4m-2 0h12a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6a2 2 0 012-2z" />
+      </svg>
+    </div>
+    <h1 class="hero-title">سازنده پسورد امن</h1>
+    <p class="hero-subtitle">رمزهای عبور قوی و منحصر به فرد بسازید</p>
+  </section>
+
+  <!-- History Icon -->
+  <svg id="historyIcon" class="history-icon hidden" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+
+  <!-- Password Generator Form -->
+  <div class="glass">
+    <form id="passwordForm" class="form-container">
+      <div>
+        <label for="passwordName" class="text-sm font-medium text-gray-100">نام رمز (اختیاری)</label>
+        <div class="input-group">
+          <span class="input-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A7 7 0 0112 15a7 7 0 016.879 2.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </span>
+          <input type="text" id="passwordName" placeholder="برای مثال: ایمیل شخصی" class="w-full p-2 rounded-lg text-gray-100">
+        </div>
+        <p class="text-xs text-gray-300 mt-1">اگر خالی بماند، با عنوان «رمز شما» ذخیره می‌شود.</p>
+      </div>
+      <div>
+        <label for="difficulty" class="text-sm font-medium text-gray-100">سطح امنیتی</label>
+        <div class="custom-select">
+          <select id="difficulty" class="w-full p-2 rounded-lg text-gray-100">
+            <option value="easy">پایه (حروف کوچک + اعداد)</option>
+            <option value="medium" selected>متوسط (حروف کوچک و بزرگ + اعداد)</option>
+            <option value="hard">قوی (حروف + اعداد + نمادها)</option>
+            <option value="custom">سفارشی</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label for="lengthRange" class="text-sm font-medium text-gray-100">طول پسورد</label>
+        <div class="range-row">
+          <input type="range" id="lengthRange" min="8" max="50" value="12" />
+          <span id="lengthValue" class="length-value">12</span>
+        </div>
+        <div class="range-meta">
+          <span class="range-max">8</span>
+          <div id="strengthBadge" class="strength-badge strength-medium">متوسط</div>
+          <span class="range-min">50</span>
+        </div>
+      </div>
+      <button id="advancedToggleBtn" type="button" class="btn" style="background:#334155">تنظیمات پیشرفته</button>
+      <div id="advancedSettings" class="form-container hidden">
+        <div class="chips">
+          <label class="chip"><input type="checkbox" id="lowercase" checked><span>حروف کوچک (a-z)</span></label>
+          <label class="chip"><input type="checkbox" id="uppercase" checked><span>حروف بزرگ (A-Z)</span></label>
+          <label class="chip"><input type="checkbox" id="numbers" checked><span>اعداد (0-9)</span></label>
+          <label class="chip"><input type="checkbox" id="symbols" checked><span>نمادها (!@#$...)</span></label>
+        </div>
+        <div class="symbols-wrap">
+          <div class="symbols-title">نمادهای مجاز:</div>
+          <div class="symbols-inline">! ، @ ، # ، $ ، % ، ^ ، & ، * ، ( ، ) ، _ ، + ، - ، = ، [ ، ] ، { ، } ، | ، ; ، : ، , ، . ، &lt; ، &gt; ، ؟</div>
+        </div>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" id="secureSave" checked><span>ذخیره امن (AES‑GCM)</span></label>
+          <button type="button" id="setMasterKeyBtn" class="btn" style="background:#0ea5e9">تنظیم کلید اصلی</button>
+        </div>
+        <p class="text-xs text-slate-400">با فعال بودن ذخیره امن، متن رمزها در دستگاه شما به‌صورت رمزنگاری‌شده ذخیره می‌شوند و برای نمایش/کپی تاریخچه نیاز به «کلید اصلی» دارید.</p>
+      </div>
+      <button type="submit" class="w-full btn">ساخت</button>
+    </form>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Password Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 class="text-base font-medium mb-3 text-gray-100">پسورد شما</h2>
+      <p id="generatedPassword"></p>
+      <div id="modalMeta" class="text-xs text-gray-300 mt-2"></div>
+      <div class="modal-buttons">
+        <button id="saveBtn" class="flex-1 btn" style="background:#10b981">ذخیره</button>
+        <button id="copyBtn" class="flex-1 btn">کپی</button>
+        <button id="regenerateBtn" class="flex-1 btn">تولید</button>
+        <button id="closeModalBtn" class="flex-1 btn" style="background:#ef4444;">بستن</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- History Modal -->
+  <div id="historyModal" class="modal hidden">
+    <div class="modal-content">
+      <h2 class="text-base font-medium mb-3 text-gray-100">تاریخچه رمزها</h2>
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>نام</th>
+            <th>رمز</th>
+            <th>تاریخ و ساعت</th>
+            <th>عملیات</th>
+          </tr>
+        </thead>
+        <tbody id="historyTableBody"></tbody>
+      </table>
+      <div class="modal-buttons">
+        <button id="clearHistoryBtn" class="w-full btn" style="background:#ef4444;">پاک کردن تاریخچه</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+توسعه داده شده توسط mmdcode محمد سجادی <a href="https://github.com/mmdcode/password-generator" target="_blank">لینک گیت هاب پروژ</a>
+  </footer>
+  <script src="./src/app.js" type="module" defer></script>
+</body>
+</html>
+
+
