@@ -7,6 +7,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=111827)](https://developer.mozilla.org/docs/Web/JavaScript)
 [![PWA](https://img.shields.io/badge/PWA-5A0FC8?logo=pwa&logoColor=white)](https://web.dev/progressive-web-apps/)
 
+<img src="https://passg.venusbox.ir/screen.png" alt="screen" />
 یک اپلیکیشن سبک، مدرن و قابل‌توسعه برای ساخت رمزهای قوی با UI شیشه‌ای (Glassmorphism)، پارتیکل سبک، PWA و Web Crypto API. این پروژه با Tailwind + Vanilla JS + Vite ساخته شده است.
 
 ## امکانات (FA)
@@ -60,7 +61,6 @@ npm run build && npm run preview
 - Web Crypto API (SHA-256، اعداد تصادفی امن)
 - PWA (Service Worker, Manifest)
 - Vite (Dev/Build)
-<img src="https://passg.venusbox.ir/screen.png" alt="screen" />
 ## راهنمای توسعه/مشارکت (FA)
 
 - ساختار ساده است و وابستگی‌ها حداقلی‌اند. اگر فیچر جدید اضافه می‌کنید، تلاش کنید بدون فریم‌ورک باقی بماند، مگر اینکه ارزش افزوده مشخص باشد.
