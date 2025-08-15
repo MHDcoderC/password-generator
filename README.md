@@ -60,7 +60,7 @@ npm run build && npm run preview
 - Web Crypto API (SHA-256، اعداد تصادفی امن)
 - PWA (Service Worker, Manifest)
 - Vite (Dev/Build)
-
+<img src="https://passg.venusbox.ir/screen.png" alt="screen" />
 ## راهنمای توسعه/مشارکت (FA)
 
 - ساختار ساده است و وابستگی‌ها حداقلی‌اند. اگر فیچر جدید اضافه می‌کنید، تلاش کنید بدون فریم‌ورک باقی بماند، مگر اینکه ارزش افزوده مشخص باشد.
