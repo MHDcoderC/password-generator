@@ -1,5 +1,52 @@
 @import "tailwindcss";
 
+/* =============================================================================
+ * LOCAL FONT LOADING - Vazirmatn
+ * =============================================================================
+ * فونت‌ها به صورت محلی از public/fonts بارگذاری می‌شن
+ * این کار باعث می‌شه وقتی نت ملیه یا قطعه، فونت همچنان کار کنه
+ * ============================================================================= */
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../fonts/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../fonts/Vazirmatn-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../fonts/Vazirmatn-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../fonts/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../fonts/Vazirmatn-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Custom Theme Configuration for Tailwind v4 */
 @theme {
   --color-slate-50: #f8fafc;
