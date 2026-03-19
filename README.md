@@ -9,7 +9,7 @@
 
 <img src="https://mmdcode.top/images/3.png" alt="screen" />
 
-> 🚀 **آخرین بروزرسانی: ۱۹ مارس ۲۰۲۶ (۲۹ اسفند ۱۴۰۴)** - ریفکتور کامل به معماری ماژولار
+> 🚀 **آخرین بروزرسانی: ۱۹ مارس ۲۰۲۶ (۲۹ اسفند ۱۴۰۴)** - ریفکتور کامل به معماری ماژولار + فونت محلی
 
 ## 📋 تغییرات نسخه جدید (Changelog)
 
@@ -45,6 +45,12 @@
 - حذف فایل‌های غیرضروری (`postcss.config.js`, `tailwind.config.js`, `src/output.css`)
 - حذف فالbacks ناامن (Math.random)
 - استانداردسازی نام‌گذاری و ساختار فایل‌ها
+
+#### 🔤 فونت محلی (Offline Font)
+- دانلود فونت Vazirmatn (وزن‌های 400، 500، 600، 700، 800) به `public/fonts/`
+- حذف وابستگی به Google Fonts CDN
+- قابلیت اجرای کامل بدون اینترنت (سازگار با نت ملی)
+- بهبود سرعت لود با `font-display: swap`
 
 ---
 ### نسخه‌های قبلی
@@ -133,6 +139,7 @@ Pull Request خوش‌آمد است! لطفاً قبل از ارسال PR، تغ
 - Difficulty presets and a live strength badge
 - Beautiful modal with Save/Copy/Regenerate actions and toast notifications
 - Local history with copy/delete/clear; SHA-256 stored; optional Secure Save (AES‑GCM) where plaintext is not stored
+- **Offline-first: All fonts loaded locally (no CDN dependency)**
 - Loader, lightweight particle background, RTL-friendly UI
 - PWA (service worker + manifest) and Vite-powered dev/build
 
