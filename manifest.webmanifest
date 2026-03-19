@@ -1,29 +1,21 @@
-<<<<<<< HEAD
 {
-  "name": "پسورد ساز",
-  "short_name": "پسوردساز",
+  "name": "سازنده پسورد امن",
+  "short_name": "پسورد ساز",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
   "dir": "rtl",
   "lang": "fa",
-  "icons": []
+  "description": "سازنده پسورد امن با رابط کاربری مدرن و قابلیت رمزنگاری",
+  "categories": ["utilities", "security", "productivity"],
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2'><rect x='3' y='11' width='18' height='11' rx='2' ry='2'/><circle cx='12' cy='7' r='4'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
-
-
-=======
-{
-  "name": "پسورد ساز",
-  "short_name": "پسوردساز",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
-  "dir": "rtl",
-  "lang": "fa",
-  "icons": []
-}
-
-
->>>>>>> 90b0267bb542127759cf6f33cd61e8b7cf9e056f
