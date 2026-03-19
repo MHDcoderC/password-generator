@@ -5,8 +5,49 @@
 [![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=111827)](https://developer.mozilla.org/docs/Web/JavaScript)
 [![PWA](https://img.shields.io/badge/PWA-5A0FC8?logo=pwa&logoColor=white)](https://web.dev/progressive-web-apps/)
+[![Last Update](https://img.shields.io/badge/Last%20Update-19%20March%202026-10b981)](https://github.com/MHDcoderC/password-generator/commits/main)
 
 <img src="https://mmdcode.top/images/3.png" alt="screen" />
+
+> 🚀 **آخرین بروزرسانی: ۱۹ مارس ۲۰۲۶ (۲۹ اسفند ۱۴۰۴)** - ریفکتور کامل به معماری ماژولار
+
+## 📋 تغییرات نسخه جدید (Changelog)
+
+### نسخه ۲.۰.۰ - ریفکتور معماری (۱۹ مارس ۲۰۲۶)
+
+#### 🏗️ معماری جدید (Breaking Changes)
+- **تقسیم‌بندی ماژولار**: تبدیل `app.js` تک‌فایل ۷۰۰ خطی به ساختار سرویس‌محور
+  - `src/config/constants.js` - مرکز ثابت‌ها و پیکربندی
+  - `src/services/cryptoService.js` - رمزنگاری AES-GCM
+  - `src/services/passwordService.js` - تولید و مدیریت پسورد
+  - `src/services/uiService.js` - مدیریت رابط کاربری
+  - `src/services/effectsService.js` - افکت‌های ویژوال
+  - `src/utils/domHelpers.js` - توابع کمکی DOM
+  - `src/utils/formatters.js` - قالب‌بندی داده‌ها
+
+#### 📚 مستندسازی حرفه‌ای
+- اضافه شدن JSDoc برای همه توابع با `@param`, `@returns`, `@example`
+- کامنت‌گذاری فارسی واضح در تمام فایل‌ها
+- مستندسازی خطاهای اختصاصی (`CryptoError`, `PasswordError`)
+
+#### 🛡️ بهبودهای امنیتی
+- جداسازی کامل منطق رمزنگاری در سرویس اختصاصی
+- مدیریت چرخه عمر Master Key با کشینگ امن
+- اعتبارسنجی ورودی‌ها با پیام‌های خطای معنی‌دار
+- بررسی پشتیبانی مرورگر قبل از عملیات رمزنگاری
+
+#### ⚡ بهبودهای عملکرد
+- کش کردن عناصر DOM با کلاس `DOMCache`
+- استفاده از Fisher-Yates shuffle برای تصادفی‌سازی امن پسورد
+- کاهش تکرار کد با توابع کمکی مرکزی
+
+#### 🧹 تمیزکاری
+- حذف فایل‌های غیرضروری (`postcss.config.js`, `tailwind.config.js`, `src/output.css`)
+- حذف فالbacks ناامن (Math.random)
+- استانداردسازی نام‌گذاری و ساختار فایل‌ها
+
+---
+### نسخه‌های قبلی
 یک اپلیکیشن سبک، مدرن و قابل‌توسعه برای ساخت رمزهای قوی با UI شیشه‌ای (Glassmorphism)، پارتیکل سبک، PWA و Web Crypto API. این پروژه با Tailwind + Vanilla JS + Vite ساخته شده است.
 
 ## امکانات (FA)
