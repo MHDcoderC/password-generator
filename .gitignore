@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Node
 node_modules/
 dist/
@@ -17,25 +16,8 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Landing page (separate deployment)
+land/
 
-=======
-# Node
-node_modules/
-dist/
-npm-debug.log*
-package-lock.json
-
-# Build artifacts
-dist/
-.cache/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-
-
->>>>>>> 90b0267bb542127759cf6f33cd61e8b7cf9e056f
+# Design notes
+tes.md

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#111110" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' ws: wss:;" />
   <title>پسورد ساز</title>
@@ -35,7 +35,7 @@
   </section>
 
   <!-- History Icon -->
-  <svg id="historyIcon" class="history-icon hidden" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+  <svg id="historyIcon" class="history-icon hidden" viewBox="0 0 24 24" fill="none" stroke="#d4a84b" stroke-width="2">
     <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 
@@ -75,7 +75,7 @@
           <span class="range-min">50</span>
         </div>
       </div>
-      <button id="advancedToggleBtn" type="button" class="btn" style="background:#334155">تنظیمات پیشرفته</button>
+      <button id="advancedToggleBtn" type="button" class="btn" style="background:var(--color-slate-700)">تنظیمات پیشرفته</button>
       <div id="advancedSettings" class="form-container hidden">
         <div class="chips">
           <label class="chip"><input type="checkbox" id="lowercase" checked><span>حروف کوچک (a-z)</span></label>
@@ -89,7 +89,7 @@
         </div>
         <div class="chips">
           <label class="chip"><input type="checkbox" id="secureSave" checked><span>ذخیره امن (AES‑GCM)</span></label>
-          <button type="button" id="setMasterKeyBtn" class="btn" style="background:#0ea5e9">تنظیم کلید اصلی</button>
+          <button type="button" id="setMasterKeyBtn" class="btn" style="background:var(--color-blue-400)">تنظیم کلید اصلی</button>
         </div>
         <p class="text-xs text-slate-400">با فعال بودن ذخیره امن، متن رمزها در دستگاه شما به‌صورت رمزنگاری‌شده ذخیره می‌شوند و برای نمایش/کپی تاریخچه نیاز به «کلید اصلی» دارید.</p>
       </div>
@@ -107,10 +107,10 @@
       <p id="generatedPassword"></p>
       <div id="modalMeta" class="text-xs text-gray-300 mt-2"></div>
       <div class="modal-buttons">
-        <button id="saveBtn" class="flex-1 btn" style="background:#10b981">ذخیره</button>
+        <button id="saveBtn" class="flex-1 btn" style="background:var(--color-emerald-400)">ذخیره</button>
         <button id="copyBtn" class="flex-1 btn">کپی</button>
         <button id="regenerateBtn" class="flex-1 btn">تولید</button>
-        <button id="closeModalBtn" class="flex-1 btn" style="background:#ef4444;">بستن</button>
+        <button id="closeModalBtn" class="flex-1 btn" style="background:var(--color-red-500);">بستن</button>
       </div>
     </div>
   </div>
@@ -131,14 +131,14 @@
         <tbody id="historyTableBody"></tbody>
       </table>
       <div class="modal-buttons">
-        <button id="clearHistoryBtn" class="w-full btn" style="background:#ef4444;">پاک کردن تاریخچه</button>
+        <button id="clearHistoryBtn" class="w-full btn" style="background:var(--color-red-500);">پاک کردن تاریخچه</button>
       </div>
     </div>
   </div>
 
   <!-- Footer -->
   <footer>
-توسعه داده شده توسط mmdcode محمد سجادی <a href="https://github.com/mmdcode/password-generator" target="_blank">لینک گیت هاب پروژ</a>
+ساخته شده توسط mmdcode — محمد سجادی | <a href="https://github.com/MHDcoderC/password-generator" target="_blank">GitHub</a>
   </footer>
   <script src="./src/app.js" type="module" defer></script>
 </body>
