@@ -11,7 +11,8 @@
  * @version 2.0.0
  */
 
-import { UI_CONFIG, MESSAGES, TOAST_ICONS } from '../config/constants.js';
+import { UI_CONFIG, MESSAGES } from '../config/constants.js';
+import { TOAST_ICONS } from '../config/icons.js';
 import { escapeHtml } from '../utils/domHelpers.js';
 import { truncatePassword } from '../utils/formatters.js';
 import { getPasswordHistory, removePasswordFromHistory, getPasswordFromHistory } from './passwordService.js';
@@ -157,7 +158,7 @@ function createHistoryRow(entry, index) {
   // نمایش پسورد (truncate شده یا نشانگر رمزنگاری)
   const displayPassword = entry.password
     ? truncatePassword(entry.password, 20)
-    : `<em style="color: #64748b;">${MESSAGES.DEFAULTS.ENCRYPTED_INDICATOR}</em>`;
+    : `<em style="color: var(--color-slate-500);">${MESSAGES.DEFAULTS.ENCRYPTED_INDICATOR}</em>`;
 
   row.innerHTML = `
     <td><strong>${escapeHtml(entry.name)}</strong></td>
@@ -165,13 +166,13 @@ function createHistoryRow(entry, index) {
     <td>${entry.timestamp}</td>
     <td>
       <button class="history-icon-btn" data-action="copy" data-index="${index}" aria-label="کپی رمز ${escapeHtml(entry.name)}">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#d4a84b" stroke-width="2">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
           <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
         </svg>
       </button>
       <button class="history-icon-btn" data-action="delete" data-index="${index}" aria-label="حذف رمز ${escapeHtml(entry.name)}">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#bf5b5b" stroke-width="2">
           <polyline points="3,6 5,6 21,6"/>
           <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
         </svg>

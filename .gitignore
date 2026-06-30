@@ -5,7 +5,6 @@ npm-debug.log*
 package-lock.json
 
 # Build artifacts
-dist/
 .cache/
 
 # OS

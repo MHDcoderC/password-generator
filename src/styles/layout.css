@@ -1,0 +1,93 @@
+/* =============================================================================
+ * LAYOUT — Hero, Responsive Breakpoints
+ * ============================================================================= */
+
+.hero {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.hero-icon {
+  width: 72px; height: 72px;
+  margin: 0 auto 1rem;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  background: rgba(212, 168, 75, 0.1);
+  border: 1px solid rgba(212, 168, 75, 0.15);
+  animation: iconPulse 4s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); box-shadow: none; }
+  50% { transform: scale(1.03); box-shadow: 0 0 30px rgba(212, 168, 75, 0.1); }
+}
+
+.hero-title {
+  font-size: 1.75rem; font-weight: 800;
+  color: var(--color-slate-100);
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 14px;
+  color: var(--color-slate-400);
+  margin-top: 0.5rem;
+}
+
+/* === Mobile (< 380px) === */
+@media (max-width: 380px) {
+  .hero-title { font-size: 1.25rem; }
+  .glass { padding: 1.25rem 1rem; }
+  .chips { grid-template-columns: 1fr; }
+  .chip { font-size: 0.8125rem; }
+}
+
+/* === Mobile (< 640px) === */
+@media (max-width: 640px) {
+  body { padding: 0.75rem; min-height: 100vh; overflow-y: auto; }
+  .hero { margin-top: 1.5rem; margin-bottom: 1rem; }
+  .hero-icon { width: 64px; height: 64px; }
+  .hero-title { font-size: 1.5rem; }
+  .hero-subtitle { font-size: 0.75rem; }
+
+  .glass { padding: 1.5rem 1.25rem; margin: 0.5rem 0; border-radius: 1rem; }
+  .form-container { gap: 1rem; }
+  .chips { grid-template-columns: 1fr; gap: 0.5rem; }
+  .chip { padding: 0.625rem 0.875rem; }
+  .range-row { gap: 0.5rem; }
+  .length-value { min-width: 36px; padding: 0.25rem 0.5rem; font-size: 0.875rem; }
+  #lengthRange::-webkit-slider-thumb { width: 20px; height: 20px; }
+  .btn { padding: 0.625rem 0.875rem; font-size: 0.8125rem; }
+
+  .modal-content { padding: 1.5rem 1.25rem; margin: 1rem; max-width: calc(100% - 2rem); border-radius: 1rem; }
+  #generatedPassword { font-size: 1rem; padding: 0.875rem 1rem; }
+  .modal-buttons { flex-direction: column; gap: 0.625rem; }
+  .modal-buttons .btn { width: 100%; }
+
+  .history-icon { top: 0.75rem; left: 0.75rem; width: 24px; height: 24px; }
+  .history-table { font-size: 0.6875rem; }
+  .history-table th, .history-table td { padding: 0.5rem; }
+  .history-icon-btn { width: 28px; height: 28px; }
+
+  .toast-container { bottom: 0.75rem; right: 0.75rem; left: 0.75rem; }
+  .toast { min-width: auto; max-width: none; width: 100%; font-size: 0.8125rem; padding: 0.75rem; }
+
+  footer { position: relative; margin-top: 1.5rem; margin-bottom: 0.5rem; padding: 0 1rem; }
+  .custom-cursor { display: none; }
+  .symbols-inline { font-size: 0.6875rem; line-height: 1.5; }
+  .strength-badge { font-size: 0.6875rem; padding: 0.25rem 0.625rem; }
+  .input-group input, .custom-select select { font-size: 16px; }
+}
+
+/* === Tablet (641-1024px) === */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .glass { max-width: 550px; }
+  .chips { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* === Large screens (≥ 1025px) === */
+@media (min-width: 1025px) {
+  .glass { max-width: 650px; }
+  .modal-content { max-width: 550px; }
+}

@@ -3,9 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   base: './',
-  plugins: [
-    tailwindcss()
-  ],
+  plugins: [tailwindcss()],
   server: {
     open: true,
     host: '127.0.0.1',
@@ -14,10 +12,6 @@ export default defineConfig({
   },
   build: {
     sourcemap: true,
-    minify: 'terser',
-    cssMinify: true,
-  },
-  css: {
-    devSourcemap: true,
+    minify: 'esbuild',
   },
 })
