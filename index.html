@@ -7,23 +7,18 @@
   <link rel="manifest" href="./manifest.webmanifest" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' ws: wss:;" />
   <title>پسورد ساز</title>
-  <!-- فونت Vazirmatn به صورت محلی از public/fonts بارگذاری می‌شه (بدون نیاز به اینترنت) -->
   <link rel="stylesheet" href="./src/input.css" />
 </head>
 <body>
-  <!-- Loader -->
   <div id="loader" class="loader">
     <div class="spinner"></div>
     <p>در حال بارگذاری...</p>
   </div>
 
-  <!-- Background with Particles -->
   <div class="background" id="background"></div>
 
-  <!-- Custom Cursor -->
   <div class="custom-cursor" id="customCursor"></div>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="hero-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
@@ -34,12 +29,10 @@
     <p class="hero-subtitle">رمزهای عبور قوی و منحصر به فرد بسازید</p>
   </section>
 
-  <!-- History Icon -->
   <svg id="historyIcon" class="history-icon hidden" viewBox="0 0 24 24" fill="none" stroke="#d4a84b" stroke-width="2">
     <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 
-  <!-- Password Generator Form -->
   <div class="glass">
     <form id="passwordForm" class="form-container">
       <div>
@@ -97,10 +90,8 @@
     </form>
   </div>
 
-  <!-- Toast Container -->
   <div id="toastContainer" class="toast-container"></div>
 
-  <!-- Password Modal -->
   <div id="modal" class="modal hidden">
     <div class="modal-content">
       <h2 class="text-base font-medium mb-3 text-gray-100">پسورد شما</h2>
@@ -115,7 +106,6 @@
     </div>
   </div>
 
-  <!-- History Modal -->
   <div id="historyModal" class="modal hidden">
     <div class="modal-content">
       <h2 class="text-base font-medium mb-3 text-gray-100">تاریخچه رمزها</h2>
@@ -136,7 +126,6 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
 ساخته شده توسط mmdcode — محمد سجادی | <a href="https://github.com/MHDcoderC/password-generator" target="_blank">GitHub</a>
   </footer>

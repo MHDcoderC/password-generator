@@ -1,6 +1,5 @@
 export class DOMCache {
   constructor() {
-    /** @type {Object<string, HTMLElement>} */
     this.elements = {};
   }
 

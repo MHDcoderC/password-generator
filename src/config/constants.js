@@ -103,7 +103,7 @@ export const MESSAGES = Object.freeze({
   DEFAULTS: Object.freeze({
     PASSWORD_NAME: 'رمز شما',
     LOADING_TEXT: 'در حال بارگذاری...',
-    ENCRYPTED_INDICATOR: '🔒 رمزنگاری شده',
+    ENCRYPTED_INDICATOR: 'رمزنگاری شده',
     STRENGTH_WEAK: 'پایه',
     STRENGTH_MEDIUM: 'متوسط',
     STRENGTH_STRONG: 'قوی'

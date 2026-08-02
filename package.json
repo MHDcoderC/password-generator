@@ -1,7 +1,7 @@
 {
   "name": "password-generator",
   "version": "2.0.0",
-  "description": "سازنده پسورد امن — PWA فارسی با Web Crypto، AES-GCM و UI شیشه‌ای",
+  "description": "Persian RTL password generator PWA with Web Crypto",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,7 @@
     "tailwindcss": "^4.1.7",
     "vite": "^6.3.5"
   },
-  "keywords": ["password-generator", "pwa", "web-crypto", "aes-gcm", "rtl"],
-  "author": "mmdcode (محمد سجادی)",
+  "keywords": ["password-generator", "pwa", "web-crypto", "rtl"],
+  "author": "Mohammad Sajjadi (mmdcode)",
   "license": "MIT"
 }

@@ -1,81 +1,36 @@
-/**
- * =============================================================================
- * UI SERVICE
- * =============================================================================
- *
- * سرویس مدیریت رابط کاربری
- * شامل توابع برای نمایش نوتیفیکیشن‌ها، مدیریت مودال‌ها، و به‌روزرسانی UI
- *
- * @module uiService
- * @author mmdcode (محمد سجادی)
- * @version 2.0.0
- */
-
 import { UI_CONFIG, MESSAGES } from '../config/constants.js';
 import { TOAST_ICONS } from '../config/icons.js';
 import { escapeHtml } from '../utils/domHelpers.js';
 import { truncatePassword } from '../utils/formatters.js';
 import { getPasswordHistory, removePasswordFromHistory, getPasswordFromHistory } from './passwordService.js';
 
-/**
- * ============================================
- * TOAST NOTIFICATIONS
- * ============================================
- */
-
-/**
- * نمایش Toast Notification
- * این تابع یه پیام موقت در گوشه صفحه نمایش می‌ده
- *
- * @param {string} message - پیام برای نمایش
- * @param {'success'|'error'|'warning'|'info'} type - نوع پیام
- * @param {HTMLElement} container - کانتینر toast ها
- */
 export function showToast(message, type = 'success', container) {
-  // اگه کانتینر وجود نداشت، fallback به alert
   if (!container) {
     console.warn('[UIService] Toast container not found, using alert');
     alert(message);
     return;
   }
 
-  // ایجاد عنصر toast
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
   toast.setAttribute('role', 'status');
   toast.setAttribute('aria-live', 'polite');
 
-  // محتوای toast
   const icon = TOAST_ICONS[type] || TOAST_ICONS.success;
   toast.innerHTML = `${icon}<span>${escapeHtml(message)}</span>`;
 
-  // اضافه به DOM
   container.appendChild(toast);
 
-  // حذف خودکار بعد از مدت زمان مشخص
   setTimeout(() => {
     toast.style.opacity = '0';
     toast.style.transform = 'translateX(100%)';
 
-    // حذف از DOM بعد از انیمیشن
     setTimeout(() => {
       toast.remove();
     }, UI_CONFIG.ANIMATION_DURATION);
   }, UI_CONFIG.TOAST_DURATION);
 }
 
-/**
- * ============================================
- * MODAL MANAGEMENT
- * ============================================
- */
-
-/**
- * مدیریت نمایش مودال
- *
- * @param {HTMLElement} modal - عنصر مودال
- * @param {boolean} show - true برای نمایش، false برای مخفی
- */
 export function toggleModal(modal, show) {
   if (!modal) return;
 
@@ -83,7 +38,6 @@ export function toggleModal(modal, show) {
     modal.classList.remove('hidden');
     modal.setAttribute('aria-hidden', 'false');
 
-    // فوکوس روی first focusable element برای accessibility
     const focusable = modal.querySelector(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
@@ -94,68 +48,33 @@ export function toggleModal(modal, show) {
   }
 }
 
-/**
- * بستن همه مودال‌ها
- *
- * @param {HTMLElement[]} modals - آرایه‌ای از مودال‌ها
- */
 export function closeAllModals(modals) {
   modals.forEach(modal => toggleModal(modal, false));
 }
 
-/**
- * ============================================
- * PASSWORD HISTORY TABLE
- * ============================================
- */
-
-/**
- * به‌روزرسانی جدول تاریخچه پسوردها
- * این تابع کل جدول رو بر اساس localStorage بازسازی می‌کنه
- *
- * @param {HTMLTableSectionElement} tableBody - tbody جدول
- * @param {HTMLElement} emptyState - پیام "تاریخچه خالی"
- * @param {HTMLElement} historyIcon - آیکون تاریخچه در هدر
- * @param {HTMLElement} historyModal - مودال تاریخچه
- */
 export function updateHistoryTable(tableBody, emptyState, historyIcon, historyModal) {
   if (!tableBody) return;
 
-  // پاک کردن محتوای فعلی
   tableBody.innerHTML = '';
-
-  // گرفتن تاریخچه
   const history = getPasswordHistory();
 
-  // مدیریت حالت خالی
   if (history.length === 0) {
     emptyState?.classList.remove('hidden');
     historyIcon?.classList.add('hidden');
     return;
   }
 
-  // نمایش آیکون و پنهان کردن پیام خالی
   emptyState?.classList.add('hidden');
   historyIcon?.classList.remove('hidden');
 
-  // ساخت ردیف‌ها
   history.forEach((entry, index) => {
-    const row = createHistoryRow(entry, index);
-    tableBody.appendChild(row);
+    tableBody.appendChild(createHistoryRow(entry, index));
   });
 }
 
-/**
- * ساخت یه ردیف جدول برای ورودی تاریخچه
- *
- * @param {Object} entry - ورودی تاریخچه
- * @param {number} index - اندیس ورودی
- * @returns {HTMLTableRowElement} - ردیف ساخته شده
- */
 function createHistoryRow(entry, index) {
   const row = document.createElement('tr');
 
-  // نمایش پسورد (truncate شده یا نشانگر رمزنگاری)
   const displayPassword = entry.password
     ? truncatePassword(entry.password, 20)
     : `<em style="color: var(--color-slate-500);">${MESSAGES.DEFAULTS.ENCRYPTED_INDICATOR}</em>`;
@@ -183,19 +102,6 @@ function createHistoryRow(entry, index) {
   return row;
 }
 
-/**
- * ============================================
- * HISTORY ACTIONS
- * ============================================
- */
-
-/**
- * هندل کردن کلیک روی دکمه‌های جدول تاریخچه
- *
- * @param {Event} event - event کلیک
- * @param {HTMLElement} toastContainer - کانتینر toast ها
- * @returns {Promise<boolean>} - آیا action انجام شد؟
- */
 export async function handleHistoryAction(event, toastContainer) {
   const actionEl = event.target.closest('[data-action]');
   if (!actionEl) return false;
@@ -207,23 +113,14 @@ export async function handleHistoryAction(event, toastContainer) {
 
   switch (action) {
     case 'copy':
-      return await handleCopyAction(index, toastContainer);
-
+      return handleCopyAction(index, toastContainer);
     case 'delete':
       return handleDeleteAction(index, toastContainer);
-
     default:
       return false;
   }
 }
 
-/**
- * کپی پسورد از تاریخچه
- *
- * @param {number} index - اندیس ورودی
- * @param {HTMLElement} toastContainer - کانتینر toast ها
- * @returns {Promise<boolean>} - موفقیت عملیات
- */
 async function handleCopyAction(index, toastContainer) {
   try {
     const password = await getPasswordFromHistory(index);
@@ -237,29 +134,17 @@ async function handleCopyAction(index, toastContainer) {
       await navigator.clipboard.writeText(password);
       showToast(MESSAGES.SUCCESS.PASSWORD_COPIED, 'success', toastContainer);
       return true;
-    } else {
-      showToast(MESSAGES.WARNING.HTTPS_REQUIRED, 'warning', toastContainer);
-      return false;
     }
 
+    showToast(MESSAGES.WARNING.HTTPS_REQUIRED, 'warning', toastContainer);
+    return false;
   } catch (error) {
     console.error('[UIService] Copy action failed:', error);
-    showToast(
-      error.message || MESSAGES.ERROR.COPY_RESTRICTED,
-      'error',
-      toastContainer
-    );
+    showToast(error.message || MESSAGES.ERROR.COPY_RESTRICTED, 'error', toastContainer);
     return false;
   }
 }
 
-/**
- * حذف ورودی از تاریخچه
- *
- * @param {number} index - اندیس ورودی
- * @param {HTMLElement} toastContainer - کانتینر toast ها
- * @returns {boolean} - موفقیت عملیات
- */
 function handleDeleteAction(index, toastContainer) {
   const success = removePasswordFromHistory(index);
 
@@ -270,30 +155,14 @@ function handleDeleteAction(index, toastContainer) {
   return success;
 }
 
-/**
- * ============================================
- * STRENGTH BADGE
- * ============================================
- */
-
-/**
- * به‌روزرسانی نشانگر قدرت پسورد
- *
- * @param {HTMLInputElement} lengthRange - input range طول
- * @param {HTMLElement} lengthValue - span نمایش مقدار طول
- * @param {HTMLElement} strengthBadge - نشانگر قدرت
- * @param {Object} options - وضعیت چک‌باکس‌ها
- */
 export function updateStrengthBadge(lengthRange, lengthValue, strengthBadge, options) {
   if (!lengthRange || !lengthValue || !strengthBadge) return;
 
   const length = parseInt(lengthRange.value, 10) || 12;
   const typesSelected = Object.values(options).filter(Boolean).length;
 
-  // نمایش مقدار طول
   lengthValue.textContent = length;
 
-  // محاسبه امتیاز
   let score = 0;
   if (length >= 8) score++;
   if (length >= 12) score++;
@@ -301,44 +170,28 @@ export function updateStrengthBadge(lengthRange, lengthValue, strengthBadge, opt
   if (length >= 20) score++;
   score += Math.max(0, typesSelected - 1);
 
-  // تعیین کلاس و برچسب
-  let label, className;
+  let label;
+  let className;
   if (score <= 2) {
-    label = 'پایه';
+    label = MESSAGES.DEFAULTS.STRENGTH_WEAK;
     className = 'strength-weak';
   } else if (score <= 4) {
-    label = 'متوسط';
+    label = MESSAGES.DEFAULTS.STRENGTH_MEDIUM;
     className = 'strength-medium';
   } else {
-    label = 'قوی';
+    label = MESSAGES.DEFAULTS.STRENGTH_STRONG;
     className = 'strength-strong';
   }
 
-  // به‌روزرسانی UI
   strengthBadge.textContent = label;
   strengthBadge.className = `strength-badge ${className}`;
 }
 
-/**
- * ============================================
- * ADVANCED SETTINGS PANEL
- * ============================================
- */
-
-/**
- * تغییر وضعیت پنل تنظیمات پیشرفته
- *
- * @param {HTMLElement} panel - پنل تنظیمات
- * @param {HTMLElement} toggleBtn - دکمه toggle
- * @param {HTMLElement} icon - آیکون فلش
- * @returns {boolean} - وضعیت جدید (باز=true، بسته=false)
- */
 export function toggleAdvancedSettings(panel, toggleBtn, icon) {
   if (!panel) return false;
 
   const isHidden = panel.classList.contains('hidden');
 
-  // تغییر visibility
   if (isHidden) {
     panel.classList.remove('hidden');
     panel.setAttribute('aria-hidden', 'false');
@@ -347,12 +200,10 @@ export function toggleAdvancedSettings(panel, toggleBtn, icon) {
     panel.setAttribute('aria-hidden', 'true');
   }
 
-  // به‌روزرسانی ARIA
   if (toggleBtn) {
     toggleBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
   }
 
-  // چرخش آیکون
   if (icon) {
     icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
   }
@@ -360,32 +211,15 @@ export function toggleAdvancedSettings(panel, toggleBtn, icon) {
   return isHidden;
 }
 
-/**
- * ============================================
- * FORM STATE
- * ============================================
- */
-
-/**
- * به‌روزرسانی چک‌باکس‌ها بر اساس سطح دشواری
- *
- * @param {string} difficulty - 'easy' | 'medium' | 'hard' | 'custom'
- * @param {HTMLInputElement} lengthRange - input range طول
- * @param {Object} checkboxes - آبجکت شامل inputهای چک‌باکس
- * @param {Object} difficultyLevels - تنظیمات سطوح دشواری از constants
- */
 export function updateFormForDifficulty(difficulty, lengthRange, checkboxes, difficultyLevels) {
   const settings = difficultyLevels[difficulty];
+  if (!settings) return;
 
-  if (!settings) return; // custom mode - no changes
-
-  // به‌روزرسانی طول
   if (lengthRange) {
     lengthRange.value = settings.length;
     lengthRange.dispatchEvent(new Event('input'));
   }
 
-  // به‌روزرسانی چک‌باکس‌ها
   if (checkboxes.uppercase) checkboxes.uppercase.checked = settings.uppercase;
   if (checkboxes.lowercase) checkboxes.lowercase.checked = settings.lowercase;
   if (checkboxes.numbers) checkboxes.numbers.checked = settings.numbers;
